@@ -224,12 +224,13 @@ def main():
         config=config, interim_results=True
     )
 
-    mic_manager = ResumableMicrophoneStream(SAMPLE_RATE, CHUNK_SIZE)
+     '''
     print(mic_manager.chunk_size)
     sys.stdout.write(YELLOW)
     sys.stdout.write('\nListening, say "Quit" or "Exit" to stop.\n\n')
     sys.stdout.write("End (ms)       Transcript Results/Status\n")
     sys.stdout.write("=====================================================\n")
+    '''
 
     with mic_manager as stream:
 
