@@ -184,29 +184,29 @@ def listen_print_loop(responses, stream):
         # Display interim results, but with a carriage return at the end of the
         # line, so subsequent lines will overwrite them.
 
+        
+                # セリフ確定
         if result.is_final:
+            # 標準出力
+            sys.stdout.write('\r' + transcript + '\n')
 
-            sys.stdout.write(GREEN)
-            sys.stdout.write("\033[K")
-            sys.stdout.write(str(corrected_time) + ": " + transcript + "\n")
+            # ファイル出力
+            with open(FILE_NAME, mode='a') as f:
+                f.write(transcript + '\n')
 
+            # ストリームの設定
             stream.is_final_end_time = stream.result_end_time
             stream.last_transcript_was_final = True
 
-            # Exit recognition if any of the transcribed phrases could be
-            # one of our keywords.
-            if re.search(r"\b(exit|quit)\b", transcript, re.I):
-                sys.stdout.write(YELLOW)
-                sys.stdout.write("Exiting...\n")
-                stream.closed = True
-                break
-
+        # セリフ入力中
         else:
-            sys.stdout.write(RED)
-            sys.stdout.write("\033[K")
-            sys.stdout.write(str(corrected_time) + ": " + transcript + "\r")
-
+            # 標準出力
+            sys.stdout.write(transcript + '\r')
+ 
+            # ストリームの設定
             stream.last_transcript_was_final = False
+        
+        
 
 
 def main():
