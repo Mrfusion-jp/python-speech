@@ -216,7 +216,7 @@ def main():
     config = speech.RecognitionConfig(
         encoding=speech.RecognitionConfig.AudioEncoding.LINEAR16,
         sample_rate_hertz=SAMPLE_RATE,
-        language_code="en-US",
+        language_code="ja-JA",
         max_alternatives=1,
     )
 
